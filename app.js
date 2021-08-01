@@ -59,7 +59,7 @@ polA.moveTo(A[0].x, A[0].y);
 polA.lineTo(A[1].x, A[1].y);
 polA.lineTo(A[2].x, A[2].y);
 polA.lineTo(A[3].x, A[3].y);
-polA.x = 100;
+polA.x = 200;
 polA.y = 100;
 polA.endFill();
 gameScene.addChild(polA);
@@ -71,7 +71,7 @@ polB.moveTo(B[0].x, B[0].y);
 polB.lineTo(B[1].x, B[1].y);
 polB.lineTo(B[2].x, B[2].y);
 polB.lineTo(B[3].x, B[3].y);
-polB.x = -100;
+polB.x = -200;
 polB.y = -100;
 polB.endFill();
 gameScene.addChild(polB);
@@ -123,7 +123,7 @@ function collisionDetection() {
     for (let i = 0; i < A.length; i++) {
         if (A[i].y + polA.y < 0 || A[i].y + polA.y > appHeight) {
             ady = -ady;
-        } else if (A[i].x + polA.x <= 0 || A[i].x + polA.x > appWidth) {
+        } else if (A[i].x + polA.x < 0 || A[i].x + polA.x > appWidth) {
             adx = -adx;
         }
     }
