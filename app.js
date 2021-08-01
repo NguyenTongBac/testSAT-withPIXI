@@ -105,37 +105,25 @@ function setup() {
 }
 
 function gameLoop(delta) {
-
     //Update the current game state:
     state(delta);
 }
 
-
 function play(delta) {
-
-    // for (let i = 0; i < A.length; i++) {
-    //     // A[i].x += adx;
-    //     // A[i].y += ady;
-    // }
-    // for (let i = 0; i < B.length; i++) {
-    //     // B[i].x += bdx;
-    //     // B[i].y += bdy;
-    // }
-    collisionDetection();
     sat(polygonA, polygonB);
     polA.x += adx;
     polA.y += ady;
     polB.x += bdx;
     polB.y += bdy;
-
+    collisionDetection();
 }
-// collision
 
+// collision
 function collisionDetection() {
     for (let i = 0; i < A.length; i++) {
         if (A[i].y + polA.y < 0 || A[i].y + polA.y > appHeight) {
             ady = -ady;
-        } else if (A[i].x + polA.x < 0 || A[i].x + polA.x > appWidth) {
+        } else if (A[i].x + polA.x <= 0 || A[i].x + polA.x > appWidth) {
             adx = -adx;
         }
     }
@@ -147,20 +135,24 @@ function collisionDetection() {
         }
     }
 }
+
 // Polygon
 function polygon(vertices, edges) {
     this.vertex = vertices;
     this.edge = edges;
 }
+
 // vector
 function vector(A, B) {
     return new xy((B.x - A.x), (B.y - A.y));
 }
+
 // xy
 function xy(x, y) {
     this.x = x;
     this.y = y;
-};
+}
+
 // sat
 function sat(polygonA, polygonB) {
     let perpendicularLine = null;
